@@ -33,7 +33,7 @@ export default {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/login', credentials)
             // return dispatch('me')
-            return axios.get('/api/user/login').then((response) => {
+            return axios.post('/api/login').then((response) => {
                 commit('SET_AUTHENTICATED', true)
                 commit('SET_USER', response.data)
             }).catch(() => {
@@ -44,6 +44,14 @@ export default {
         async logout({commit}) {
             await axios.get('/sanctum/csrf-cookie')
             await axios.post('/logout')
+            return axios.post('/api/logout').then((response) => {
+                commit('SET_AUTHENTICATED', false)
+                commit('SET_USER', null)
+            }).catch(() => {
+                commit('SET_AUTHENTICATED', true)
+                commit('SET_USER', response.data)
+            })
+        }
             return (
                 commit('SET_USER', {}),
                     commit('SET_AUTHENTICATED', false)
