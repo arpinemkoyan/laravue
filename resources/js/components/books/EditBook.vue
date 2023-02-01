@@ -1,5 +1,4 @@
 <template>
-<!--    <Layout/>-->
     <div>
         <h1>Update Book</h1>
         <div class="row">
@@ -24,10 +23,8 @@
 <script>
 
 import axios from "axios";
-import Layout from "../Layout";
 
 export default {
-    components: {Layout},
     data() {
         return {
             book: {}
@@ -50,11 +47,8 @@ export default {
         },
 
         updateBook() {
-            axios.put(`/books/${this.$route.params.id}`,this.book)
+            axios.put(`/books/${this.$route.params.id}`, this.book)
                 .then((res) => {
-                    // console.log(response);
-                    // console.log(this.book.id)
-
                     this.$router.push({name: 'Book'});
                 });
         }

@@ -16,10 +16,6 @@ window.Vue = require('vue').default;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('layout', require('./components/Layout.vue').default);
 
 
@@ -32,20 +28,7 @@ Vue.component('layout', require('./components/Layout.vue').default);
 import router from "./router";
 import store from './store'
 
-// const app = new Vue({
-//     el: '#app',
-//     router: router
-// });
-
-
 const app = new Vue({
     router,
     store,
 }).$mount('#app')
-// store.dispatch('auth/me').then(() => {
-//     new Vue({
-//         router,
-//         store,
-//         render: h => h(App)
-    // }).$mount('#app')
-// })

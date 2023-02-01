@@ -1,5 +1,4 @@
 <template>
-<!--    <Layout/>-->
     <div>
         <h1>Create An Author</h1>
         <form v-on:submit.prevent="addAuthor" method="post">
@@ -25,10 +24,8 @@
 
 <script>
 import axios from "axios";
-import Layout from "../Layout";
 
 export default {
-    components: {Layout},
     data() {
         return {
             author: {

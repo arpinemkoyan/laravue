@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
+use App\Services\AuthorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,20 +33,13 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AuthorRequest $request, AuthorService $authorService)
     {
-        //add request validation
-        $author = new Author();
-        $author =$author->fill([
-            'name' => $request->name,
-            'first_name' => $request->first_name,
-            'last_name'=> $request->last_name
-        ]);
+        $author = $authorService->createAuthor($request);
 
-        $author->save();
 
         return $author;
     }
@@ -52,15 +47,15 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Author  $author
+     * @param \App\Models\Author $author
      * @return \Illuminate\Http\Response
      */
     public function show(Author $author)
     {
         $newAuthor = Author::find($author->id);
-        $books=$newAuthor->books;
+        $books = $newAuthor->books;
 
-        return!$newAuthor
+        return !$newAuthor
             ? response()->json([
                 "status" => false,
                 "author" => 'Author not found'
@@ -75,7 +70,7 @@ class AuthorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Author  $author
+     * @param \App\Models\Author $author
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -87,30 +82,30 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Author  $author
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Author $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
         $author = Author::where(['id' => $author->id])
             ->update([
                 'name' => $request->name,
                 'first_name' => $request->first_name,
-                'last_name'=> $request->last_name
-                ]);
+                'last_name' => $request->last_name
+            ]);
 
 
-        return  response()->json([
-            'author'=>$author,
-            'status' =>true
+        return response()->json([
+            'author' => $author,
+            'status' => true
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Author  $author
+     * @param \App\Models\Author $author
      * @return \Illuminate\Http\Response
      */
     public function destroy(Author $author)

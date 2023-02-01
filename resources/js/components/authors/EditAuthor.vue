@@ -1,5 +1,4 @@
 <template>
-<!--    <Layout/>-->
     <div>
         <h1>Update Author</h1>
         <div class="row">
@@ -28,10 +27,8 @@
 <script>
 
 import axios from "axios";
-import Layout from "../Layout";
 
 export default {
-    components: {Layout},
     data() {
         return {
             author: {}
@@ -54,7 +51,7 @@ export default {
         },
 
         updateAuthor() {
-            axios.put(`/api/authors/${this.$route.params.id}`,this.author)
+            axios.put(`/api/authors/${this.$route.params.id}`, this.author)
                 .then((res) => {
                     this.$router.push({name: 'Author'});
                 });

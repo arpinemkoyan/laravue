@@ -1,5 +1,4 @@
 <template>
-<!--    <Layout/>-->
     <div>
         <h1>Authors</h1>
 
@@ -49,10 +48,8 @@
 
 <script>
 import axios from 'axios';
-import Layout from "../Layout";
 
 export default {
-    components: {Layout},
     data() {
         return {
             authors: [],
@@ -143,7 +140,6 @@ input {
     width: 350px;
     margin: 20px auto;
     padding: 10px 45px;
-    /*background: white url("assets/search-icon.svg") no-repeat 15px center;*/
     background-size: 15px 15px;
     font-size: 16px;
     border: none;

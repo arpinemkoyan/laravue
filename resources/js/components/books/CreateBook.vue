@@ -1,5 +1,4 @@
 <template>
-<!--    <Layout/>-->
     <div>
         <h1>Create A Book</h1>
         <form v-on:submit.prevent="addBook" method="post">
@@ -34,18 +33,16 @@
 <script>
 import axios from "axios";
 import Multiselect from 'vue-multiselect';
-import Layout from "../Layout";
 
 export default {
     components: {
-        Layout,
         Multiselect
     },
     data() {
         return {
-            form:{
-                name:'',
-                authors:[]
+            form: {
+                name: '',
+                authors: []
             },
             authors: [],
         }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
+use App\Http\Requests\BookRequest;
 use App\Models\AuthorBook;
 use App\Models\Book;
-use Doctrine\Inflector\Rules\NorwegianBokmal\Inflectible;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -36,8 +35,9 @@ class BookController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
+
         $book = new Book();
         $book = $book->fill([
             'name' => $request->name
@@ -53,7 +53,6 @@ class BookController extends Controller
             ]);
         }
 
-
         return $book;
 
     }
@@ -67,7 +66,8 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $newBook = Book::find($book->id);
-        $authors=$newBook->authors;
+        $authors = $newBook->authors;
+
         return !$newBook
             ? response()->json([
                 "status" => false,
@@ -101,9 +101,12 @@ class BookController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
         $book = Book::where(['id' => $id])
             ->update(['name' => $request->name]);
-
 
         return $book;
     }

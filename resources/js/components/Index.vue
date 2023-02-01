@@ -1,14 +1,24 @@
 <template>
-    <div class="col-md-6">
+    <div class="col-md-6" v-if="authenticated">
         <a href="/authors">Authors</a>
-        <a href="/books">Books</a>
+        <a v-if="user.user.role == 1" href="/books">Books</a>
     </div>
 
 </template>
 
 <script>
 
+import {mapGetters} from "vuex";
+
 export default {
-    name: 'Index'
+    name: 'Index',
+
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user',
+        })
+    },
+
 }
 </script>

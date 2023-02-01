@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +15,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-//Route::get('/', function () {
-//    return view('index');
-//});
-
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/{any}', function () {
     return view('home');
 })->where('any', '.*');
 
-Route::put('api/books/{id}', [BookController::class, 'update']);
-Route::post('api/books', [BookController::class, 'store']);
-Route::put('api/authors/{id}', [AuthorController::class, 'update']);
-Route::post('api/authors', [AuthorController::class, 'store']);
-//Route::post('api/users/registration', [UserController::class, 'registration'])->name('users.registration');
+Route::put('api/books/{id}', [BookController::class, 'update'])->name('books.update');
+Route::post('api/books', [BookController::class, 'store'])->name('books.store');
+Route::put('api/authors/{id}', [AuthorController::class, 'update'])->name('authors.update');
+Route::post('api/authors', [AuthorController::class, 'store'])->name('authors.store');

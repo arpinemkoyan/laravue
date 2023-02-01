@@ -31,9 +31,7 @@ export default {
     actions: {
         async login({commit}, credentials) {
             await axios.get('/sanctum/csrf-cookie')
-            await axios.post('/login', credentials)
-            // return dispatch('me')
-            return axios.post('/api/login').then((response) => {
+            return axios.post('/api/login', credentials).then((response) => {
                 commit('SET_AUTHENTICATED', true)
                 commit('SET_USER', response.data)
             }).catch(() => {
@@ -41,9 +39,20 @@ export default {
                 commit('SET_USER', null)
             })
         },
+
+        async signup({commit}, credentials) {
+            await axios.get('/sanctum/csrf-cookie')
+            return axios.post('/api/signup', credentials).then((response) => {
+                commit('SET_AUTHENTICATED', true)
+                commit('SET_USER', response.data)
+            }).catch(() => {
+                commit('SET_AUTHENTICATED', false)
+                commit('SET_USER', null)
+            })
+        },
+
         async logout({commit}) {
             await axios.get('/sanctum/csrf-cookie')
-            await axios.post('/logout')
             return axios.post('/api/logout').then((response) => {
                 commit('SET_AUTHENTICATED', false)
                 commit('SET_USER', null)
@@ -52,31 +61,6 @@ export default {
                 commit('SET_USER', response.data)
             })
         }
-            return (
-                commit('SET_USER', {}),
-                    commit('SET_AUTHENTICATED', false)
-            )
-
-            // return dispatch('me')
-            // return axios.get('/api/user/').then((response) => {
-            //     commit('SET_AUTHENTICATED', true)
-            //     commit('SET_USER', response.data)
-            // }).catch(() => {
-            //     commit('SET_AUTHENTICATED', false)
-            //     commit('SET_USER', null)
-            // })
-        },
-
-        me({commit}) {
-            return axios.get('/api/user').then((response) => {
-                commit('SET_AUTHENTICATED', true)
-                commit('SET_USER', response.data)
-            }).catch(() => {
-                commit('SET_AUTHENTICATED', false)
-                commit('SET_USER', null)
-            })
-        }
     }
-
 }
 
