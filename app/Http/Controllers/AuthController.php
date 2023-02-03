@@ -72,13 +72,13 @@ class AuthController extends Controller
                 'msg' => 'incorrect username or password'
             ], 401);
         }
-
-        $token = $user->createToken('apiToken')->plainTextToken;
+        $token = auth()->user()->createToken('apiToken')->plainTextToken;
 
         $res = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
         ];
+
 
         return response($res, 201);
 
@@ -91,4 +91,5 @@ class AuthController extends Controller
             'message' => 'user logged out'
         ];
     }
+
 }

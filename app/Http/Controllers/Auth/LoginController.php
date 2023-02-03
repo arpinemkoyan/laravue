@@ -40,43 +40,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-//    public function login(Request $request)
-//    {
-//        dump($request->email);
-//        die();
-//
-//        $request->validate([
-//            'email' => 'required',
-//            'password' => 'required'
-//        ]);
-//
-////        $credentials = $request->only('email', 'password');
-////
-////        if (Auth::attempt($credentials)) {
-////            $user = Auth::user();
-////            $userRole = $user->role;
-////            if ($userRole == \App\Models\User::ROLE_AUTHOR) {
-////                /*Author*/
-////                return redirect()->route('author');
-////            } elseif ($userRole == \App\Models\User::ROLE_USER) {
-////                redirect('/');
-////                return view('home');
-////            }
-////        }
-////        if (Auth::attempt($request->only('email', 'password'))) {
-//            $user = Auth::user();
-//            $b =Auth::attempt($request->only('email', 'password'));
-//            //            return response()->json($user, 200);
-//            return $b;
-//
-////        }
-////        return response()->json([
-////            'status' => false,
-////        ]);
-//
-////        throw ValidationException::withMessages([
-////            'email' => __('auth.failed')
-////        ]);
-//    }
 }

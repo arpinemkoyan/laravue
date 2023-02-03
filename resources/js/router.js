@@ -1,5 +1,6 @@
 import Vue from "vue";
 import vueRouter from "vue-router";
+import store from './store';
 
 Vue.use(vueRouter);
 
@@ -19,62 +20,113 @@ const routes = [
     {
         path: '/',
         component: Index,
-        name: 'Index'
+        name: 'Index',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/login',
         component: Login,
-        name: 'Login'
+        name: 'Login',
+        meta: {
+            middleware: "guest"
+        },
     },
     {
         path: '/books',
         component: Book,
-        name: 'Book'
+        name: 'Book',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/books/create',
         component: CreateBook,
-        name: 'CreateBook'
+        name: 'CreateBook',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/books/:id/edit',
         component: EditBook,
-        name: 'EditBook'
+        name: 'EditBook',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/books/:id',
         component: ShowBook,
-        name: 'ShowBook'
+        name: 'ShowBook',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/authors',
         component: Author,
-        name: 'Author'
+        name: 'Author',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/authors/create',
         component: CreateAuthor,
-        name: 'CreateAuthor'
+        name: 'CreateAuthor',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/authors/:id/edit',
         component: EditAuthor,
-        name: 'EditAuthor'
+        name: 'EditAuthor',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/authors/:id',
         component: ShowAuthor,
-        name: 'ShowAuthor'
+        name: 'ShowAuthor',
+        meta: {
+            middleware: "auth"
+        },
     },
     {
         path: '/signup',
         component: Registration,
-        name: 'Registration'
+        name: 'Registration',
+        meta: {
+            middleware: "guest"
+        },
     }
 
 ]
 
-export default new vueRouter({
+const router = new vueRouter({
     mode: "history",
-    routes
+    routes,
 })
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
+    if (to.meta.middleware == "guest") {
+        if (store.state.auth.authenticated) {
+            next({name: "Index"})
+        }
+        next()
+    } else {
+        if (store.state.auth.authenticated) {
+            next()
+        } else {
+            next({name: "Login"})
+        }
+    }
+})
+
+export default router

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
@@ -14,9 +15,7 @@ use App\Http\Controllers\AuthorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Auth::routes();
-
 
 Route::get('/{any}', function () {
     return view('home');

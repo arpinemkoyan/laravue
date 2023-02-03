@@ -79,34 +79,4 @@ class RegisterController extends Controller
         ]);
     }
 
-//    public function register(Request $request /* AuthorService $authorService*/)
-//    {
-//
-//        $data = $request->all();
-//        if ($request->role == 0) {
-//
-//            /*Author*/
-//            $author = new Author();
-//            $author =$author->fill([
-//                'name' => $request->name,
-//                'first_name' => $request->first_name,
-//                'last_name'=> $request->last_name
-//            ]);
-//
-//            $author->save();
-//            $data['author_id'] = $author->id;
-//
-//
-//        }
-//        else {
-//
-//            /*custom*/
-//            $data['author_id'] = null;
-//        }
-//
-//        $newData=$this->create($data);
-//
-//        return response()->json($newData);
-//
-//    }
 }

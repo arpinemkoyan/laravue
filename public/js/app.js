@@ -6396,22 +6396,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Index */ "./resources/js/components/Index.vue");
-/* harmony import */ var _components_books_Book__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/books/Book */ "./resources/js/components/books/Book.vue");
-/* harmony import */ var _components_books_CreateBook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/books/CreateBook */ "./resources/js/components/books/CreateBook.vue");
-/* harmony import */ var _components_books_EditBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/books/EditBook */ "./resources/js/components/books/EditBook.vue");
-/* harmony import */ var _components_books_ShowBook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/books/ShowBook */ "./resources/js/components/books/ShowBook.vue");
-/* harmony import */ var _components_authors_Author__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/authors/Author */ "./resources/js/components/authors/Author.vue");
-/* harmony import */ var _components_authors_CreateAuthor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/authors/CreateAuthor */ "./resources/js/components/authors/CreateAuthor.vue");
-/* harmony import */ var _components_authors_EditAuthor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/authors/EditAuthor */ "./resources/js/components/authors/EditAuthor.vue");
-/* harmony import */ var _components_authors_ShowAuthor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/authors/ShowAuthor */ "./resources/js/components/authors/ShowAuthor.vue");
-/* harmony import */ var _components_users_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/users/Login */ "./resources/js/components/users/Login.vue");
-/* harmony import */ var _components_users_Registration__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/users/Registration */ "./resources/js/components/users/Registration.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _components_Index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Index */ "./resources/js/components/Index.vue");
+/* harmony import */ var _components_books_Book__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/books/Book */ "./resources/js/components/books/Book.vue");
+/* harmony import */ var _components_books_CreateBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/books/CreateBook */ "./resources/js/components/books/CreateBook.vue");
+/* harmony import */ var _components_books_EditBook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/books/EditBook */ "./resources/js/components/books/EditBook.vue");
+/* harmony import */ var _components_books_ShowBook__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/books/ShowBook */ "./resources/js/components/books/ShowBook.vue");
+/* harmony import */ var _components_authors_Author__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/authors/Author */ "./resources/js/components/authors/Author.vue");
+/* harmony import */ var _components_authors_CreateAuthor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/authors/CreateAuthor */ "./resources/js/components/authors/CreateAuthor.vue");
+/* harmony import */ var _components_authors_EditAuthor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/authors/EditAuthor */ "./resources/js/components/authors/EditAuthor.vue");
+/* harmony import */ var _components_authors_ShowAuthor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/authors/ShowAuthor */ "./resources/js/components/authors/ShowAuthor.vue");
+/* harmony import */ var _components_users_Login__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/users/Login */ "./resources/js/components/users/Login.vue");
+/* harmony import */ var _components_users_Registration__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/users/Registration */ "./resources/js/components/users/Registration.vue");
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 
 
@@ -6425,53 +6427,106 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
 
 var routes = [{
   path: '/',
-  component: _components_Index__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: 'Index'
+  component: _components_Index__WEBPACK_IMPORTED_MODULE_3__["default"],
+  name: 'Index',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/login',
-  component: _components_users_Login__WEBPACK_IMPORTED_MODULE_11__["default"],
-  name: 'Login'
+  component: _components_users_Login__WEBPACK_IMPORTED_MODULE_12__["default"],
+  name: 'Login',
+  meta: {
+    middleware: "guest"
+  }
 }, {
   path: '/books',
-  component: _components_books_Book__WEBPACK_IMPORTED_MODULE_3__["default"],
-  name: 'Book'
+  component: _components_books_Book__WEBPACK_IMPORTED_MODULE_4__["default"],
+  name: 'Book',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/books/create',
-  component: _components_books_CreateBook__WEBPACK_IMPORTED_MODULE_4__["default"],
-  name: 'CreateBook'
+  component: _components_books_CreateBook__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: 'CreateBook',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/books/:id/edit',
-  component: _components_books_EditBook__WEBPACK_IMPORTED_MODULE_5__["default"],
-  name: 'EditBook'
+  component: _components_books_EditBook__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: 'EditBook',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/books/:id',
-  component: _components_books_ShowBook__WEBPACK_IMPORTED_MODULE_6__["default"],
-  name: 'ShowBook'
+  component: _components_books_ShowBook__WEBPACK_IMPORTED_MODULE_7__["default"],
+  name: 'ShowBook',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/authors',
-  component: _components_authors_Author__WEBPACK_IMPORTED_MODULE_7__["default"],
-  name: 'Author'
+  component: _components_authors_Author__WEBPACK_IMPORTED_MODULE_8__["default"],
+  name: 'Author',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/authors/create',
-  component: _components_authors_CreateAuthor__WEBPACK_IMPORTED_MODULE_8__["default"],
-  name: 'CreateAuthor'
+  component: _components_authors_CreateAuthor__WEBPACK_IMPORTED_MODULE_9__["default"],
+  name: 'CreateAuthor',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/authors/:id/edit',
-  component: _components_authors_EditAuthor__WEBPACK_IMPORTED_MODULE_9__["default"],
-  name: 'EditAuthor'
+  component: _components_authors_EditAuthor__WEBPACK_IMPORTED_MODULE_10__["default"],
+  name: 'EditAuthor',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/authors/:id',
-  component: _components_authors_ShowAuthor__WEBPACK_IMPORTED_MODULE_10__["default"],
-  name: 'ShowAuthor'
+  component: _components_authors_ShowAuthor__WEBPACK_IMPORTED_MODULE_11__["default"],
+  name: 'ShowAuthor',
+  meta: {
+    middleware: "auth"
+  }
 }, {
   path: '/signup',
-  component: _components_users_Registration__WEBPACK_IMPORTED_MODULE_12__["default"],
-  name: 'Registration'
+  component: _components_users_Registration__WEBPACK_IMPORTED_MODULE_13__["default"],
+  name: 'Registration',
+  meta: {
+    middleware: "guest"
+  }
 }];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: "history",
   routes: routes
-}));
+});
+router.beforeEach(function (to, from, next) {
+  document.title = to.meta.title;
+  if (to.meta.middleware == "guest") {
+    if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.auth.authenticated) {
+      next({
+        name: "Index"
+      });
+    }
+    next();
+  } else {
+    if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].state.auth.authenticated) {
+      next();
+    } else {
+      next({
+        name: "Login"
+      });
+    }
+  }
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
 /***/ }),
 
@@ -30783,13 +30838,22 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.authenticated
-    ? _c("div", { staticClass: "col-md-6" }, [
-        _c("a", { attrs: { href: "/authors" } }, [_vm._v("Authors")]),
-        _vm._v(" "),
-        _vm.user.user.role == 1
-          ? _c("a", { attrs: { href: "/books" } }, [_vm._v("Books")])
-          : _vm._e(),
-      ])
+    ? _c(
+        "div",
+        { staticClass: "col-md-6" },
+        [
+          _c("router-link", { attrs: { to: { name: "Author" } } }, [
+            _vm._v(" Authors"),
+          ]),
+          _vm._v(" "),
+          _vm.user.user.role == 1
+            ? _c("router-link", { attrs: { to: { name: "Book" } } }, [
+                _vm._v("Books"),
+              ])
+            : _vm._e(),
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = []
@@ -32153,7 +32217,7 @@ var render = function () {
                       staticClass: "font-weight-bold",
                       attrs: { for: "first_name" },
                     },
-                    [_vm._v("FName")]
+                    [_vm._v("Fist Name")]
                   ),
                   _vm._v(" "),
                   _c("input", {
@@ -32191,7 +32255,7 @@ var render = function () {
                       staticClass: "font-weight-bold",
                       attrs: { for: "last_name" },
                     },
-                    [_vm._v("LName")]
+                    [_vm._v("Last Name")]
                   ),
                   _vm._v(" "),
                   _c("input", {

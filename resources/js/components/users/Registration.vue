@@ -13,12 +13,12 @@
                                        class="form-control">
                             </div>
                             <div class="form-group col-12">
-                                <label for="first_name" class="font-weight-bold">FName</label>
+                                <label for="first_name" class="font-weight-bold">Fist Name</label>
                                 <input type="text" name="first_name" v-model="auth.first_name" id="first_name"
                                        placeholder="Enter  Fname" class="form-control">
                             </div>
                             <div class="form-group col-12">
-                                <label for="last_name" class="font-weight-bold">LName</label>
+                                <label for="last_name" class="font-weight-bold">Last Name</label>
                                 <input type="text" name="last_name" v-model="auth.last_name" id="last_name"
                                        placeholder="Enter Lname" class="form-control">
                             </div>

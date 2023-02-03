@@ -31,36 +31,38 @@ export default {
     actions: {
         async login({commit}, credentials) {
             await axios.get('/sanctum/csrf-cookie')
-            return axios.post('/api/login', credentials).then((response) => {
-                commit('SET_AUTHENTICATED', true)
-                commit('SET_USER', response.data)
-            }).catch(() => {
-                commit('SET_AUTHENTICATED', false)
-                commit('SET_USER', null)
-            })
+            return axios.post('/api/login', credentials)
+                .then((response) => {
+                    commit('SET_AUTHENTICATED', true)
+                    commit('SET_USER', response.data)
+                }).catch(() => {
+                    commit('SET_AUTHENTICATED', false)
+                    commit('SET_USER', null)
+                })
         },
 
         async signup({commit}, credentials) {
             await axios.get('/sanctum/csrf-cookie')
-            return axios.post('/api/signup', credentials).then((response) => {
-                commit('SET_AUTHENTICATED', true)
-                commit('SET_USER', response.data)
-            }).catch(() => {
-                commit('SET_AUTHENTICATED', false)
-                commit('SET_USER', null)
-            })
+            return axios.post('/api/signup', credentials)
+                .then((response) => {
+                    commit('SET_AUTHENTICATED', true)
+                    commit('SET_USER', response.data)
+                }).catch(() => {
+                    commit('SET_AUTHENTICATED', false)
+                    commit('SET_USER', null)
+                })
         },
 
         async logout({commit}) {
             await axios.get('/sanctum/csrf-cookie')
-            return axios.post('/api/logout').then((response) => {
-                commit('SET_AUTHENTICATED', false)
-                commit('SET_USER', null)
-            }).catch(() => {
-                commit('SET_AUTHENTICATED', true)
-                commit('SET_USER', response.data)
-            })
+            return axios.post('/api/logout')
+                .then((response) => {
+                    commit('SET_AUTHENTICATED', false)
+                    commit('SET_USER', null)
+                }).catch(() => {
+                    commit('SET_AUTHENTICATED', true)
+                    commit('SET_USER', response.data)
+                })
         }
     }
 }
-

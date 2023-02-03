@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-6" v-if="authenticated">
-        <a href="/authors">Authors</a>
-        <a v-if="user.user.role == 1" href="/books">Books</a>
+        <router-link :to="{name:'Author'}"> Authors</router-link>
+        <router-link v-if="user.user.role == 1" :to="{name:'Book'}">Books</router-link>
     </div>
 
 </template>
